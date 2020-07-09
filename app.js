@@ -35,7 +35,6 @@ app.use(require("express-session")({
 	saveUninitialized:false
 }));
 
-require('locus');
  
 
 
