@@ -1,0 +1,16 @@
+<%- include("partials/header.ejs") %>
+
+  <h1><%= user.username %>'s profile</h1>
+  <% if(currentUser._id.equals(user._id)){ %>
+    <h1>
+	 your own page	
+    </h1>
+  <% } else if(follow===true){ %>
+       <h2>
+		 followed   
+      </h2>
+  <% }else{ %>
+ <a href="/follow/<%= user._id %>"><button>follow</button></a>
+ <% } %>
+
+<%- include("partials/footer.ejs") %>

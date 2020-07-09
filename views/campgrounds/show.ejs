@@ -1,0 +1,104 @@
+<%- include("../partials/header.ejs") %>
+<div class="container">
+	<div class="row">
+		<div class="col-md-3">
+			<p class="lead">Yelpcamp</p>
+			<div class="list-group">
+				<li class="list-group-item">Info 1</li>
+				<li class="list-group-item">Info 2</li>
+				<li class="list-group-item">Info 3</li>c
+			</div>
+		</div>
+		<div class="col-md-9">
+			<div class="thumbnail">
+				<img class="img-responsive" src="<%= campground.image %>">
+				<div class="caption-full">
+					<h4 class="text-rightt">$9.00/night</h4>
+				    <h4><a href="/campgrounds" ><%= campground.name %> </a></h4>
+					<form action="/campgrounds/<%= campground._id %>/like" method="POST">
+						<button>
+							
+							<i class="thumbs up outline icon">
+								<h4>
+									<%= campground.likes.length%>
+								</h4>
+							</i>
+							
+						</button>
+						
+					</form>
+					<button class="trigger">More info</button>
+					<div class="Modal">
+						<div class="ModalContent">
+							<span class="closeButton">X</span>
+							<h1 class="peopleLikes">Campground Likes: <%=campground.likes.length%></h1>
+							<table>
+								<thead>
+									<tr>
+										<th>Liked by:</th>
+									</tr>
+								</thead>
+								<tbody>
+									<% if(campground.likes.length===0){ %>
+										<tr><td>No likes yet....</td></tr>  
+									<% } %>
+ 								<%   for(var i=campground.likes.length-1;i>=0;i--){%>
+									   
+										<tr><td><%= campground.likes[i].username %></td></tr>
+									<%}%>
+									
+								
+								</tbody>
+							</table>
+
+						</div>
+				    </div>
+
+					
+
+					
+					<p><%= campground.description %></p>
+					<p>
+						<em>Submitted by :<a href="/user/<%= campground.author.id%>"><%=campground.author.username%></a></em>
+					</p>
+					<% if(currentUser && campground.author.id.equals(currentUser._id)){ %>
+					<a class="btn btn-warning" href="/campgrounds/<%= campground._id %>/edit">Edit</a>
+					<form id="deleteForm" action="/campgrounds/<%= campground._id %>?_method=DELETE" method="POST">
+						 <button class="btn btn-danger">Delete</button>
+					</form>
+					<% } %>
+					
+				</div>
+	        </div>
+			<div class="well">
+				<div class="text-right">
+				    <a class="btn btn-success" href="/campgrounds/<%= campground._id %>/comments/new">Add New Comment</a>
+				</div>
+				    <% campground.comments.forEach(function(comment){ %>
+				         <div class="row">
+							 <div class="col-md-12">
+								 <strong><%= comment.author.username %></strong>
+								 
+								  <p><%= comment.text %></p>
+								 <% if(currentUser && comment.author.id.equals(currentUser._id)) {%>
+								 <a class="btn btn-xs btn-warning red" href="/campgrounds/<%= campground._id %>/comments/<%= comment._id%>/edit">Edit</a>
+								 <form action="/campgrounds/<%= campground._id %>/comments/<%= comment._id%>?_method=DELETE" method="POST" >
+									 <input  type="submit" class="red btn-danger" value="Delete">
+								 </form>
+								 <% } %>
+							 </div>
+				         </div>
+	               
+                    <% }) %>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+<%- include("../partials/footer.ejs") %>

@@ -1,0 +1,67 @@
+.thumbnail img{
+	width:100%;
+}
+.caption-full .text-right{
+	float:right;
+}
+#deleteForm{
+	display:inline-block;
+}
+
+.red{
+	padding:0.5px;
+}
+
+.Modal{
+	position:absolute;
+	top:100px;
+	width:100%;
+	height:50%;
+	margin:auto;
+    opacity:0;
+    visibility: hidden;
+    
+    transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+
+
+
+}
+
+.ModalContent{
+	position: absolute;
+	top:20%;
+    height:100%;
+	
+	background-color:rgba(0,0,0,0.5);
+	color:white;
+	padding:auto;
+	width:100%;
+	border-radius: 0.5rem;
+}
+
+.closeButton{
+	float:right;
+	width:1.5rem;
+	line-height: 1.5rem;
+	cursor: pointer;
+}
+
+.show-modal{
+	opacity:1;
+	    visibility: visible;
+
+	transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+
+	
+}
+.peopleLikes{
+	  	font-size:20px;
+
+}
+
+.my{
+	color:red;
+	margin-left:230px;
+}
+
+
